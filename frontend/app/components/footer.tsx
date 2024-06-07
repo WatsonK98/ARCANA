@@ -4,7 +4,7 @@
 
 export default function Footer() {
     return(
-        <div className='flex justify-end bg-black text-white font-semibold py-2 px-4'>
+        <div className='flex justify-between bg-black text-white font-semibold py-2 px-4'>
             <div className='flex-grow text-left'>
                 <p>DAC CAED</p>
             </div>

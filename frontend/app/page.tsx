@@ -5,7 +5,7 @@ export default function Home() {
   const [ initials, setInitials ] = useState('')
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex flex-col items-center justify-between p-24">
       <form className='flex flex-col items-center'>
         <label className='font-bold text-xl'>User Initials</label>
         <input 
