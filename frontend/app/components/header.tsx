@@ -45,7 +45,7 @@ export default function Header() {
                     alt='DEVCOM logo'
                 />
             </Link>
-            <ul className='flex flex-shrink-0 space-x-4 text-white font-semibold'>
+            <ul className='flex flex-shrink-0 space-x-4 text-white text-xl font-semibold'>
                 {visibileMenuItems.map((item, index) => (
                     <li key={index} className='hover:underline'>
                         <Link href={item.path}>{item.label}</Link>
