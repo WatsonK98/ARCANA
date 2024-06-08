@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,6 +34,13 @@ export default function Header() {
     const visibileMenuItems = menuItems.filter(item =>
         !hiddenLinks[pathname]?.includes(item.path)
     )
+
+    useEffect(() => {
+        const initialsValue = localStorage.getItem('initials')
+        if(initialsValue) {
+            setInitials(initialsValue)
+        }
+    }, [])
     
     return (
         <nav className='flex items-center justify-between w-full bg-black px-8 py-2'>
