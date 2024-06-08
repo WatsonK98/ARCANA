@@ -13,7 +13,6 @@ export default function Home() {
   useEffect(() => {
     const initialsValue = localStorage.getItem('initials')
     if(initialsValue) {
-        setInitials(initialsValue)
         router.push('/projects')
     }
 }, [])
@@ -35,7 +34,7 @@ export default function Home() {
           required
         />
         {initials && (initials.length == 2) && (
-        <button className='bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded'>Submit</button>
+        <button className='bg-slate-500 hover:bg-slate-600 px-4 py-2 rounded-xl text-white'>Submit</button>
         )}
       </form>
     </main>

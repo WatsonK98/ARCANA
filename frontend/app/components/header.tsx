@@ -24,11 +24,11 @@ export default function Header() {
 
     const hiddenLinks: { [key: string]: string[] } = {
         '/': [ '/projects', '/project/events', '/project/graph' ],
-        '/projects': [ '/project/events', '/project/graph' ],
-        '/project/events': [ '/project/event' ],
-        '/project/graph': [ '/project/graph' ],
-        '/activity-log': [ '/project/events', '/project/graph', '/activity-log' ],
-        '/settings': [ '/project/events', '/project/graph', '/settings' ]
+        '/projects': [ '/', '/project/events', '/project/graph' ],
+        '/project/events': [ '/', '/project/event' ],
+        '/project/graph': [ '/', '/project/graph' ],
+        '/activity-log': [ '/', '/project/events', '/project/graph', '/activity-log' ],
+        '/settings': [ '/', '/project/events', '/project/graph', '/settings' ]
     }
 
     const visibileMenuItems = menuItems.filter(item =>
