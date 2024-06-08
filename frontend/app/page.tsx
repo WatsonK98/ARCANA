@@ -1,6 +1,6 @@
 'use client'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [ initials, setInitials ] = useState('')
@@ -8,8 +8,15 @@ export default function Home() {
 
   const handleSubmit = () => {
     localStorage.setItem('initials', initials)
-    router.push('/projects')
   }
+
+  useEffect(() => {
+    const initialsValue = localStorage.getItem('initials')
+    if(initialsValue) {
+        setInitials(initialsValue)
+        router.push('/projects')
+    }
+}, [])
 
   return (
     <main className="flex flex-col h-full items-center p-24">
@@ -29,7 +36,7 @@ export default function Home() {
         />
         {initials && (initials.length == 2) && (
         <button className='bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded'>Submit</button>
-      )}
+        )}
       </form>
     </main>
   );
