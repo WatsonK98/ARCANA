@@ -53,7 +53,7 @@ export default function Header() {
                 ))}
             </ul>
             <div className='ml-4 text-white font-semibold text-lg'>
-                {initials && <p>{initials}</p>}
+                {initials && <p>Analyst: {initials}</p>}
                 {!initials && <p>No Initials</p>}
             </div>
         </nav>

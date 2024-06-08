@@ -17,6 +17,7 @@ export default function Home() {
           placeholder='AA'
           required
         />
+        <p>{initials}</p>
         {initials && (initials.length == 2) && (
         <button className='bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded'>Submit</button>
       )}
