@@ -4,25 +4,36 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
+interface MenuItem {
+    path: string,
+    label: string
+}
+
 export default function Header() {
     const [ initials, setInitials ] = useState('')
     const pathname = usePathname()
 
-    const menuItems = [
+    const menuItems: MenuItem[] = [
         { path: '/', label: 'Home' },
         { path: '/projects', label: 'Projects'},
         { path: '/project/events', label: 'Events' },
         { path: '/project/graph', label: 'Graph' },
-        { path: '/activity-log', lavel: 'Activity Log' },
+        { path: '/activity-log', label: 'Activity Log' },
         { path: '/settings', label: 'Settings'}
     ]
 
-    const visibleLinks = {
-        '/': [ '/activity-log', '/settings' ],
-        '/projects': [ '/', '/activity-log', '/settings' ],
-        '/project/events': [ '/', '/projects', '/project/graph', '/activity-log', '/settings' ],
-        '/project/graph': [ '/', '/projects', '/project/events', '/activity-log', '/settings' ],
+    const hiddenLinks: { [key: string]: string[] } = {
+        '/': [ '/projects', '/project/events', '/project/graph' ],
+        '/projects': [ '/project/events', '/project/graph' ],
+        '/project/events': [ '/project/event' ],
+        '/project/graph': [ '/project/graph' ],
+        '/activity-log': [ '/project/events', '/project/graph', '/activity-log' ],
+        '/settings': [ '/project/events', '/project/graph', '/settings' ]
     }
+
+    const visibileMenuItems = menuItems.filter(item =>
+        !hiddenLinks[pathname]?.includes(item.path)
+    )
     
     return (
         <nav className='flex items-center justify-between w-full bg-black px-8 py-2'>
@@ -34,16 +45,13 @@ export default function Header() {
                     alt='DEVCOM logo'
                 />
             </Link>
-            {pathname === '/' && 
-                <ul className='flex flex-shrink-0 space-x-4 text-white font-semibold'>
-                    <li className='hover:underline'>
-                        <Link href='activity-log'>Activity Log</Link>
+            <ul className='flex flex-shrink-0 space-x-4 text-white font-semibold'>
+                {visibileMenuItems.map((item, index) => (
+                    <li key={index} className='hover:underline'>
+                        <Link href={item.path}>{item.label}</Link>
                     </li>
-                    <li className='hover:underline'>
-                        <Link href='settings'>Settings</Link>
-                    </li>
-                </ul>
-            }
+                ))}
+            </ul>
             <div className='ml-4 text-white font-semibold text-lg'>
                 {initials && <p>{initials}</p>}
                 {!initials && <p>No Initials</p>}
