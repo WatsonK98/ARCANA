@@ -16,19 +16,19 @@ export default function Header() {
     const menuItems: MenuItem[] = [
         { path: '/', label: 'Home' },
         { path: '/projects', label: 'Projects'},
-        { path: '/project/events', label: 'Events' },
-        { path: '/project/graph', label: 'Graph' },
+        { path: '/projects/project/events', label: 'Events' },
+        { path: '/projects/project/graph', label: 'Graph' },
         { path: '/activity-log', label: 'Activity Log' },
         { path: '/settings', label: 'Settings'}
     ]
 
     const hiddenLinks: { [key: string]: string[] } = {
-        '/': [ '/projects', '/project/events', '/project/graph' ],
-        '/projects': [ '/', '/project/events', '/project/graph' ],
-        '/project/events': [ '/', '/project/event' ],
-        '/project/graph': [ '/', '/project/graph' ],
-        '/activity-log': [ '/', '/project/events', '/project/graph', '/activity-log' ],
-        '/settings': [ '/', '/project/events', '/project/graph', '/settings' ]
+        '/': [ '/projects', '/projects/project/events', '/projects/project/graph' ],
+        '/projects': [ '/', '/projects/project/events', '/projects/project/graph' ],
+        '/projects/project/events': [ '/', '/projects/project/events' ],
+        '/projects/project/graph': [ '/', '/projects/project/graph' ],
+        '/activity-log': [ '/', '/projects/project/events', '/projects/project/graph', '/activity-log' ],
+        '/settings': [ '/', '/projects/project/events', '/projects/project/graph', '/settings' ]
     }
 
     const visibileMenuItems = menuItems.filter(item =>
